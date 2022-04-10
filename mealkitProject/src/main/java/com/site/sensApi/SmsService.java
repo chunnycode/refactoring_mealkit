@@ -15,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class SmsService {
@@ -29,9 +29,10 @@ public class SmsService {
 		
 		SmsRequestDto smsRequestDto = new SmsRequestDto("SMS", "COMM", "82", "", "MangoLtd", messages);
 		
-		ObjectMapper objectMapper = new ObjectMapper();
-		String jsonBody = objectMapper.writeValueAsString(smsRequestDto);
-		
+//		ObjectMapper objectMapper = new ObjectMapper();
+//		String jsonBody = objectMapper.writeValueAsString(smsRequestDto);
+		String jsonBody = smsRequestDto.toString();
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.set("x-ncp-apigw-timestamp", time.toString());
