@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 Mapper의 위치 -->
-<mapper namespace="com.site.order.OrderMapper">
+<mapper namespace="com.site.mapper.OrderMapper">
    <insert id="orderSuccessInsert">
       insert into ordered values(
       1,'N','1',sysdate,#{recipient},#{sender},'A',#{cart_id},#{delivery_area}, '')

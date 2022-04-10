@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.site.notice_board.Notice_BoardMapper">
+<mapper namespace="com.site.mapper.Notice_BoardMapper">
 
 	<!-- 게시판 리스트 : 전체,검색 -->
 	<select id="selectBoardList"

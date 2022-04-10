@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.site.member.MemberService;
+import com.site.service.member.MemberService;
 import com.site.vo.MemberVo;
 
 @Controller

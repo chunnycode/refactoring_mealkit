@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 Mapper의 위치 -->
-<mapper namespace="com.site.cart.CartMapper">
+<mapper namespace="com.site.mapper.CartMapper">
 
 	<select id="cartSelectOne" parameterType="com.site.vo.CartVo" resultType="int">
 		select count(*) from cart where product_id=#{product_id} and member_id=#{member_id} and status='N'

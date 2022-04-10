@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <!-- namespace는 Mapper의 위치 -->  
-<mapper namespace="com.site.product.ProductMapper">
+<mapper namespace="com.site.mapper.ProductMapper">
 
 <!-- id는 Mapper에서 호출한 메소드명 -->
 <!-- resultType은 반환값 -->
