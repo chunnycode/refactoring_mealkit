@@ -11,8 +11,8 @@ import com.site.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.vo.ChartVo;
-import com.site.vo.MemberVo;
+import com.site.admin.model.ChartVo;
+import com.site.member.model.MemberVo;
 
 @Service
 public class AdminServiceImpl implements AdminService {

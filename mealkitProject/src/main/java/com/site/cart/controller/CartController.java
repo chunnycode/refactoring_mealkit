@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.site.vo.CartVo;
+import com.site.cart.model.CartVo;
 
 @Controller
 @RequestMapping("/cart")

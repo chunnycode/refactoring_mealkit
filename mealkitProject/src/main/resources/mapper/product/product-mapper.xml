@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <!-- namespace는 Mapper의 위치 -->  
-<mapper namespace="com.site.mapper.ProductMapper">
+<mapper namespace="com.site.product.dao.ProductDao">
 
 <!-- id는 Mapper에서 호출한 메소드명 -->
 <!-- resultType은 반환값 -->
@@ -36,17 +36,17 @@
 	</select>
 	
 	<!-- 상품 1개 select -->
-	<select id="productOneSelect" resultType="com.site.vo.ProductVo">
+	<select id="productOneSelect" resultType="com.site.product.model.ProductVo">
 		select * from product where id=#{id}
 	</select>
 	
 	<!-- 상품 1개 select 매장 정보 -->
-	<select id="storeOneSelect" resultType="com.site.vo.StoreVo">
+	<select id="storeOneSelect" resultType="com.site.store.model.StoreVo">
 		select * from store where id=#{id}
 	</select>
 	
 	<!-- 상품 리스트 -->
-	<select id="productList" resultType="com.site.vo.ProductVo">
+	<select id="productList" resultType="com.site.product.model.ProductVo">
 		select * from
 		(select rownum rnum,a.* from 
 		(select b.* from (select p.*,s.store_name from product p, store s where p.store_id = s.id) b
@@ -75,7 +75,7 @@
 	
 	<!-- 상품 top3 출력 -->
 	
-	<select id="productTopList" resultType="com.site.vo.ProductVo">
+	<select id="productTopList" resultType="com.site.product.model.ProductVo">
 		<![CDATA[
 			select * from (select * from product order by rate desc) where rownum<=3
 		]]>
@@ -86,7 +86,7 @@
 		select count(*) from review where product_id=#{id}
 	</select>
 	
-	<select id="reviewProductList" resultType="com.site.vo.ReviewVo">
+	<select id="reviewProductList" resultType="com.site.product.model.ReviewVo">
 		SELECT r.*,m.nickname,rp.name picture FROM review r,member m,product p,reviewpicture rp where 
 		rp.ROWID IN (SELECT MAX(rp2.ROWID) FROM reviewpicture rp2 GROUP BY review_id)
 		and r.member_id=m.id and r.product_id=#{id} and r.product_id=p.id and r.id= rp.review_id

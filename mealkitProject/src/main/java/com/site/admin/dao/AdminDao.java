@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.site.vo.ChartVo;
-import com.site.vo.MemberVo;
+import com.site.admin.model.ChartVo;
+import com.site.member.model.MemberVo;
 
 @Mapper
 public interface AdminDao {

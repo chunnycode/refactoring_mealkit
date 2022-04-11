@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.site.vo.StoreVo;
+import com.site.store.model.StoreVo;
 
 @Mapper
 public interface BsDao {

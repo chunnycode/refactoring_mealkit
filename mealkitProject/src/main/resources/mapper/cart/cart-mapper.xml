@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 Mapper의 위치 -->
-<mapper namespace="com.site.mapper.CartMapper">
+<mapper namespace="com.site.cart.dao.CartDao">
 
-	<select id="cartSelectOne" parameterType="com.site.vo.CartVo" resultType="int">
+	<select id="cartSelectOne" parameterType="com.site.cart.model.CartVo" resultType="int">
 		select count(*) from cart where product_id=#{product_id} and member_id=#{member_id} and status='N'
 	</select>
 	
 	<!-- 장바구니 담기 -->
-	<insert id="cartInsert" parameterType="com.site.vo.CartVo">
+	<insert id="cartInsert" parameterType="com.site.cart.model.CartVo">
 		insert into cart(member_id, product_id, amount, status) values(#{member_id}, #{product_id}, #{amount}, #{status})
 	</insert>
 	
@@ -21,7 +21,7 @@
 	</update>
 	
 	<!-- 장바구니 리스트 출력 -->
-	<select id="memberCartList" resultType="com.site.vo.CartVo">
+	<select id="memberCartList" resultType="com.site.cart.model.CartVo">
 		select p.name product_name, p.price, p.picture, c.id, c.amount, p.quantity from product p, cart c 
 		where p.id = c.product_id and c.member_id=#{member_id} and status='N'
 	</select>
@@ -37,12 +37,12 @@
 	</delete>
 	
 	<!-- 장바구니 전체 삭제 -->
-	<delete id="cartAllDel" parameterType="com.site.vo.CartVo">
+	<delete id="cartAllDel" parameterType="com.site.cart.model.CartVo">
 		delete from cart where member_id=#{member_id} and status='N'
 	</delete>
 	
 	<!-- 선택한상품만 주문 리스트 출력 -->
-	<select id="orderCartList" resultType="com.site.vo.CartVo">
+	<select id="orderCartList" resultType="com.site.cart.model.CartVo">
 		select p.name product_name, p.price, p.picture, c.id, c.amount from product p, cart c 
 		where p.id = c.product_id and c.id=#{list}
 	</select>

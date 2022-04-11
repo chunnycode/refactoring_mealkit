@@ -3,7 +3,7 @@ package com.site.cart.service;
 import java.util.List;
 import java.util.Map;
 
-import com.site.vo.CartVo;
+import com.site.cart.model.CartVo;
 
 public interface CartService {
 

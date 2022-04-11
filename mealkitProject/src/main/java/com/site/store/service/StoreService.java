@@ -3,8 +3,8 @@ package com.site.store.service;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.site.vo.ProductVo;
-import com.site.vo.StoreVo;
+import com.site.product.model.ProductVo;
+import com.site.store.model.StoreVo;
 
 public interface StoreService {
 

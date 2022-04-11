@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.mapper.StoreMapper;
+import com.site.store.dao.StoreDao;
 import com.site.store.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.site.vo.ProductVo;
-import com.site.vo.StoreVo;
+import com.site.product.model.ProductVo;
+import com.site.store.model.StoreVo;
 
 @Service
 public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
-	private StoreMapper storeMapper;
+	private StoreDao storeMapper;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;

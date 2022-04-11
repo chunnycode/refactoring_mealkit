@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <!-- namespace는 Mapper의 위치 -->  
-<mapper namespace="com.site.mapper.MemberMapper">
+<mapper namespace="com.site.member.dao.MemberDao">
 
 <!-- id는 Mapper에서 호출한 메소드명 -->
 <!-- resultType은 반환값 -->
 <!-- parameterType은 받는 매개변수 형 -->
 
 	<!-- 아이디만으로 찾기 -->
-	<select id="selectId" resultType="com.site.vo.MemberVo">
+	<select id="selectId" resultType="com.site.member.model.MemberVo">
 		select * from member where id=#{id}
 	</select>
 	
@@ -21,13 +21,13 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="register" parameterType="com.site.vo.MemberVo">
+	<insert id="register" parameterType="com.site.member.model.MemberVo">
 		insert into member(id, pw, nickname, name, dob, gender, email, tel, addr, addr1, email_flag, sms_flag, point, rank, picture) values(#{id}, #{pw}, #{nickname}, #{name}, #{dob}, #{gender}, #{email}, #{tel}, #{addr}, #{addr1}, #{email_flag}, #{sms_flag}, #{point}, #{rank}, #{picture})
 	</insert>
 	
 	<!--★★★★★★★★★★★ 명수 ★★★★★★★★★★★-->
 	<!-- 회원정보 수정 -->
-	<update id="update" parameterType="com.site.vo.MemberVo">
+	<update id="update" parameterType="com.site.member.model.MemberVo">
 		update member set pw=#{pw}, nickname=#{nickname}, name=#{name}, dob=#{dob}, gender=#{gender}, email=#{email}, tel=#{tel},
 		addr=#{addr}, addr1=#{addr1}, email_flag=#{email_flag}, sms_flag=#{sms_flag}, point=#{point}, rank=#{rank}, picture=#{picture} where id=#{id}
 	</update>

@@ -2,11 +2,11 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.site.mapper.One_BoardMapper">
+<mapper namespace="com.site.oneboard.dao.OneBoardDao">
 
      <!--리스트  -->
 	<select id="selectBoardList"
-		resultType="com.site.vo.One_BoardVo">
+		resultType="com.site.oneboard.model.OneBoardVo">
 
 		select * from
 		(select rownum rnum,o.* from
@@ -78,7 +78,7 @@
 	</insert>
 	
 		<select id="selectBoardView"
-		resultType="com.site.vo.One_BoardVo">
+		resultType="com.site.oneboard.model.OneBoardVo">
 		select * from one_board where id=#{id}
 	</select>
 	
@@ -91,7 +91,7 @@
 	</update>
 	
 	<!-- 게시글 이전글 -->
-	<select id="selectBoardViewPre" resultType="com.site.vo.One_BoardVo">
+	<select id="selectBoardViewPre" resultType="com.site.oneboard.model.OneBoardVo">
 	        select * from
 			(select rownum rnum,o.* from
 			(select * from one_board
@@ -104,7 +104,7 @@
 	</select>
 	
 	<!-- 게시글 다음글 -->
-	<select id="selectBoardViewNext" resultType="com.site.vo.One_BoardVo">
+	<select id="selectBoardViewNext" resultType="com.site.oneboard.model.OneBoardVo">
 	         select * from
 			(select rownum rnum,o.* from
 			(select * from one_board
@@ -155,7 +155,7 @@ one_board_seq.nextval, #{member_id},#{member_type}, #{bcategory}, #{btitle}, #{b
 </insert>
 
 <!-- /*_______________________시원________________________*/ -->
-<select id="memberBoardList" resultType="com.site.vo.One_BoardVo">
+<select id="memberBoardList" resultType="com.site.oneboard.model.OneBoardVo">
 <![CDATA[
 	      select * from one_board where member_id=#{id} and rownum<=3
 		]]>

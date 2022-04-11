@@ -3,10 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.site.mapper.Event_BoardMapper">
+<mapper namespace="com.site.eventboard.dao.EventBoardDao">
 
 	<!-- 게시판 리스트 : 전체,검색 -->
-	<select id="selectBoardList" resultType="com.site.vo.Notice_BoardVo">
+	<select id="selectBoardList" resultType="com.site.noticeboard.model.NoticeBoardVo">
 		
 
 		select * from
@@ -38,7 +38,7 @@
 	</select>
 	
 	<!-- 게시판 리스트 : 전체,검색 -->
-	<select id="selectBoardList2" resultType="com.site.vo.Notice_BoardVo">
+	<select id="selectBoardList2" resultType="com.site.noticeboard.model.NoticeBoardVo">
 		
 
 		select * from
@@ -111,13 +111,13 @@
 
 	<!-- 게시글 뷰 1개 -->
 	<select id="selectBoardView"
-		resultType="com.site.vo.Notice_BoardVo">
+		resultType="com.site.noticeboard.model.NoticeBoardVo">
 		select * from notice_board where id=#{id}
 	</select>
 
 	<!-- 게시글 이전글 -->
 	<select id="selectBoardViewPre"
-		resultType="com.site.vo.Notice_BoardVo">
+		resultType="com.site.noticeboard.model.NoticeBoardVo">
 		select * from
 		(select rownum rnum,n.* from
 		(select * from notice_board where <![CDATA[sdate < sysdate and sysdate < edate]]> and ncategory = 'event'
@@ -133,7 +133,7 @@
 
 	<!-- 게시글 다음글 -->
 	<select id="selectBoardViewNext"
-		resultType="com.site.vo.Notice_BoardVo">
+		resultType="com.site.noticeboard.model.NoticeBoardVo">
 		select * from
 		(select rownum rnum,n.* from
 		(select * from notice_board where <![CDATA[sdate < sysdate and sysdate < edate]]> and ncategory = 'event'

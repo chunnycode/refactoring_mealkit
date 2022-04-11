@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.site.cart.service.CartService;
-import com.site.mapper.CartMapper;
+import com.site.cart.dao.CartDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.vo.CartVo;
+import com.site.cart.model.CartVo;
 
 @Service
 public class CartServiceImpl implements CartService {
 
 	@Autowired
-    CartMapper cartMapper;
+	CartDao cartMapper;
 
 //	장바구니 담기
 	@Override

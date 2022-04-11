@@ -9,7 +9,7 @@ import com.site.business.service.BsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.vo.StoreVo;
+import com.site.store.model.StoreVo;
 
 @Service
 public class BsSeviceImpl implements BsService {

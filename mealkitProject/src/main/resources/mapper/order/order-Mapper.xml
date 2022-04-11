@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 Mapper의 위치 -->
-<mapper namespace="com.site.mapper.OrderMapper">
+<mapper namespace="com.site.order.dao.OrderDao">
    <insert id="orderSuccessInsert">
       insert into ordered values(
       1,'N','1',sysdate,#{recipient},#{sender},'A',#{cart_id},#{delivery_area}, '')
@@ -21,13 +21,13 @@
       quantity=quantity-amount
    </update>
    <!-- member mypage 주문리스트 출력 -->
-   <select id="selectOrderList" resultType="com.site.vo.OrderVo">
+   <select id="selectOrderList" resultType="com.site.order.model.OrderVo">
       select o.*,p.picture,p.name,p.id as product_id,p.price*c.amount as price, c.amount,to_char(o.order_date,'YYYY-MM-DD') as orderdate
       from ordered o,cart c, product p
       where o.cart_id=c.id and c.product_id=p.id and c.member_id=#{id}
    </select>
    
-   <select id="selectStoreOrderList" resultType="com.site.vo.OrderVo">
+   <select id="selectStoreOrderList" resultType="com.site.order.model.OrderVo">
       select o.*,p.picture,p.name,p.id as product_id,p.price*c.amount as price, c.amount,to_char(o.order_date,'YYYY-MM-DD') as orderdate
       from ordered o,cart c, product p, store s
       where o.cart_id=c.id and c.product_id=p.id and p.store_id=s.id and s.id=#{id}
@@ -57,7 +57,7 @@
    </insert>
    
    <!-- 별점 4개이상 리스트 출력 -->
-   <select id="reviewTopList" resultType="com.site.vo.ReviewVo">
+   <select id="reviewTopList" resultType="com.site.product.model.ReviewVo">
       <![CDATA[
          select r.*,p.name from review r, product p where r.rate>=4 and r.product_id=p.id 
       ]]>
