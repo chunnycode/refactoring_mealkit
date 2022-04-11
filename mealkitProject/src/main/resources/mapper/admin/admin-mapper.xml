@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 Mapper의 위치 -->
-<mapper namespace="com.site.admin.AdminMapper">
+<mapper namespace="com.site.admin.dao.AdminDao">
 
 	<!-- 회원정보 리스트 카운트 -->
 	<select id="memberListCount" resultType="int"

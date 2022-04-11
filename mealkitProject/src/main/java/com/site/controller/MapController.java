@@ -2,7 +2,7 @@ package com.site.controller;
 
 import java.util.ArrayList;
 
-import com.site.service.map.MapService;
+import com.site.map.map.MapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

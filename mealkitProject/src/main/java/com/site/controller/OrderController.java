@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.site.service.order.OrderService;
+import com.site.order.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.site.service.cart.CartService;
-import com.site.service.member.MemberService;
-import com.site.service.product.ProductService;
+import com.site.cart.service.CartService;
+import com.site.member.member.MemberService;
+import com.site.product.product.ProductService;
 import com.site.vo.MemberVo;
 import com.site.vo.ReviewVo;
 
