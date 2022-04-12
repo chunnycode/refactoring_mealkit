@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.store.dao.StoreDao;
+import com.site.store.mapper.StoreMapper;
 import com.site.store.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +17,7 @@ import com.site.store.model.StoreVo;
 public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
-	private StoreDao storeMapper;
+	private StoreMapper storeMapper;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;

@@ -1,4 +1,4 @@
-package com.site.admin.dao;
+package com.site.admin.mapper;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import com.site.admin.model.ChartVo;
 import com.site.member.model.MemberVo;
 
 @Mapper
-public interface AdminDao {
+public interface AdminMapper {
 
 //	회원정보 리스트 카운트
 	int CountMemberList(String category, String order, String searchWord);

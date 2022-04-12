@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.admin.dao.AdminDao;
+import com.site.admin.mapper.AdminMapper;
 import com.site.admin.model.MemberListNumberingDto;
 import com.site.admin.model.AdminMemberListVo;
 import com.site.admin.service.AdminService;
@@ -18,13 +18,13 @@ import com.site.member.model.MemberVo;
 public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
-	private AdminDao adminDao;
+	private AdminMapper adminMapper;
 
 	@Override
 	public Map<String, Object> memberList(AdminMemberListVo adminMemberListVo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		int listCount = adminDao.CountMemberList(
+		int listCount = adminMapper.CountMemberList(
 				adminMemberListVo.getCategory()
 				,adminMemberListVo.getOrder()
 				,adminMemberListVo.getSearchWord());
@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
 				,20
 				,5);
 		
-		ArrayList<MemberVo> list = adminDao.memberList(
+		ArrayList<MemberVo> list = adminMapper.memberList(
 				numberingDto.getStartRow()
 				,numberingDto.getEndRow()
 				,adminMemberListVo.getCategory()
@@ -62,16 +62,16 @@ public class AdminServiceImpl implements AdminService {
 //	회원정보 삭제
 	@Override
 	public int deleteMember(String id) {
-		int result = adminDao.DeleteMember(id);
+		int result = adminMapper.DeleteMember(id);
 		return result;
 	} 
 	//차트
 	@Override
 	public Map<String, Object> orderView() {
 		Map<String, Object> orderView = new HashMap<String, Object>();
-		ArrayList<ChartVo> list = adminDao.orderView();
-		ArrayList<ChartVo> tableList = adminDao.tableList();
-		ArrayList<ChartVo> tableSummary = adminDao.tableSummary();
+		ArrayList<ChartVo> list = adminMapper.orderView();
+		ArrayList<ChartVo> tableList = adminMapper.tableList();
+		ArrayList<ChartVo> tableSummary = adminMapper.tableSummary();
 		orderView.put("list", list);
 		orderView.put("tableList", tableList);
 		orderView.put("tableSummary", tableSummary);
@@ -95,9 +95,9 @@ public class AdminServiceImpl implements AdminService {
 			datepicker2 = datepicker2.substring(0,4)+"-"+datepicker2.substring(4,datepicker2.length());
 			datepicker2 = datepicker2.substring(0,7)+"-"+datepicker2.substring(7,datepicker2.length());
 			//당일
-			ArrayList<ChartVo> list = adminDao.orderSelectView(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableList = adminDao.tableSelectList(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableSummary = adminDao.tableSelectSummary(datepicker1,datepicker2);
+			ArrayList<ChartVo> list = adminMapper.orderSelectView(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableList = adminMapper.tableSelectList(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableSummary = adminMapper.tableSelectSummary(datepicker1,datepicker2);
 			orderView.put("list", list);
 			orderView.put("tableList", tableList);
 			orderView.put("tableSummary", tableSummary);
@@ -116,9 +116,9 @@ public class AdminServiceImpl implements AdminService {
 			datepicker2 = datepicker2.substring(0,4)+"-"+datepicker2.substring(4,datepicker2.length());
 			datepicker2 = datepicker2.substring(0,7)+"-"+datepicker2.substring(7,datepicker2.length());
 			//1주일
-			ArrayList<ChartVo> list = adminDao.orderSelectWeekView(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableList = adminDao.tableSelectList(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableSummary = adminDao.tableSelectSummary(datepicker1,datepicker2);
+			ArrayList<ChartVo> list = adminMapper.orderSelectWeekView(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableList = adminMapper.tableSelectList(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableSummary = adminMapper.tableSelectSummary(datepicker1,datepicker2);
 			orderView.put("list", list);
 			orderView.put("tableList", tableList);
 			orderView.put("tableSummary", tableSummary);
@@ -135,9 +135,9 @@ public class AdminServiceImpl implements AdminService {
 			datepicker2 = datepicker2.substring(0,4)+"-"+datepicker2.substring(4,datepicker2.length());
 			datepicker2 = datepicker2.substring(0,7)+"-"+datepicker2.substring(7,datepicker2.length());
 			//1개월
-			ArrayList<ChartVo> list = adminDao.orderSelectOmonthView(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableList = adminDao.tableSelectList(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableSummary = adminDao.tableSelectSummary(datepicker1,datepicker2);
+			ArrayList<ChartVo> list = adminMapper.orderSelectOmonthView(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableList = adminMapper.tableSelectList(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableSummary = adminMapper.tableSelectSummary(datepicker1,datepicker2);
 			orderView.put("list", list);
 			orderView.put("tableList", tableList);
 			orderView.put("tableSummary", tableSummary);
@@ -154,9 +154,9 @@ public class AdminServiceImpl implements AdminService {
 			datepicker2 = datepicker2.substring(0,4)+"-"+datepicker2.substring(4,datepicker2.length());
 			datepicker2 = datepicker2.substring(0,7)+"-"+datepicker2.substring(7,datepicker2.length());
 			//3개월
-			ArrayList<ChartVo> list = adminDao.orderSelectTmonthView(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableList = adminDao.tableSelectList(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableSummary = adminDao.tableSelectSummary(datepicker1,datepicker2);
+			ArrayList<ChartVo> list = adminMapper.orderSelectTmonthView(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableList = adminMapper.tableSelectList(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableSummary = adminMapper.tableSelectSummary(datepicker1,datepicker2);
 			orderView.put("list", list);
 			orderView.put("tableList", tableList);
 			orderView.put("tableSummary", tableSummary);
@@ -173,9 +173,9 @@ public class AdminServiceImpl implements AdminService {
 			datepicker2 = datepicker2.substring(0,4)+"-"+datepicker2.substring(4,datepicker2.length());
 			datepicker2 = datepicker2.substring(0,7)+"-"+datepicker2.substring(7,datepicker2.length());
 			//12개월
-			ArrayList<ChartVo> list = adminDao.orderSelectTwsmonthView(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableList = adminDao.tableSelectList(datepicker1,datepicker2);
-			ArrayList<ChartVo> tableSummary = adminDao.tableSelectSummary(datepicker1,datepicker2);
+			ArrayList<ChartVo> list = adminMapper.orderSelectTwsmonthView(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableList = adminMapper.tableSelectList(datepicker1,datepicker2);
+			ArrayList<ChartVo> tableSummary = adminMapper.tableSelectSummary(datepicker1,datepicker2);
 			orderView.put("list", list);
 			orderView.put("tableList", tableList);
 			orderView.put("tableSummary", tableSummary);

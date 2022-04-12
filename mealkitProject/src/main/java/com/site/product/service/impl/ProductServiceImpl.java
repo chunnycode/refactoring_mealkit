@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.product.dao.ProductDao;
+import com.site.product.mapper.ProductMapper;
 import com.site.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import com.site.store.model.StoreVo;
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	private ProductDao productMapper;
+	private ProductMapper productMapper;
 
 //	상품 리스트
 	@Override

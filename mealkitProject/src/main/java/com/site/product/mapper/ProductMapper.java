@@ -1,4 +1,4 @@
-package com.site.product.dao;
+package com.site.product.mapper;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import com.site.product.model.ReviewVo;
 import com.site.store.model.StoreVo;
 
 @Mapper
-public interface ProductDao {
+public interface ProductMapper {
 
 	int productRegister(ProductVo productVo);
 

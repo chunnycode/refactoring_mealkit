@@ -1,6 +1,6 @@
 package com.site.member.service.impl;
 
-import com.site.member.dao.MemberDao;
+import com.site.member.mapper.MemberMapper;
 import com.site.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,7 +12,7 @@ import com.site.member.model.MemberVo;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDao memberMapper;
+	private MemberMapper memberMapper;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;

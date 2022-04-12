@@ -1,4 +1,4 @@
-package com.site.noticeboard.dao;
+package com.site.noticeboard.mapper;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.site.noticeboard.model.NoticeBoardVo;
 
 @Mapper
-public interface NoticeBoardDao {
+public interface NoticeBoardMapper {
 
 	// 게시판 리스트
 	ArrayList<NoticeBoardVo> selectBoardList(int startrow, int endrow, String category, String category1, String searchWord);

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.site.order.dao.OrderDao;
+import com.site.order.mapper.OrderMapper;
 import com.site.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import com.site.product.model.ReviewVo;
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
-	private OrderDao orderMapper;
+	private OrderMapper orderMapper;
 
 	
 	//결제완료 배송지,상품번호

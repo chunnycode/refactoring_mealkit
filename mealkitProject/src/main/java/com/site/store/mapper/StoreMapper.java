@@ -1,4 +1,4 @@
-package com.site.store.dao;
+package com.site.store.mapper;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import com.site.product.model.ProductVo;
 import com.site.store.model.StoreVo;
 
 @Mapper
-public interface StoreDao {
+public interface StoreMapper {
 
 //	업체 로그인
 	StoreVo selectId(String id);

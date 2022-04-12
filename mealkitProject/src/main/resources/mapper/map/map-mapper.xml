@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 Mapper의 위치 -->  
-<mapper namespace="com.site.map.dao.MapDao">
+<mapper namespace="com.site.map.mapper.MapMapper">
 <select id="storeListSelect" resultType="com.site.store.model.StoreVo">
 select * from store
 </select>

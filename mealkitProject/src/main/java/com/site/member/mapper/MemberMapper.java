@@ -1,11 +1,11 @@
-package com.site.member.dao;
+package com.site.member.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.site.member.model.MemberVo;
 
 @Mapper
-public interface MemberDao {
+public interface MemberMapper {
 
 //	멤버 로그인
 	MemberVo selectId(String id);

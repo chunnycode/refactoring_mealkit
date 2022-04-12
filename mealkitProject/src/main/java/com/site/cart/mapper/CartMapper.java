@@ -1,4 +1,4 @@
-package com.site.cart.dao;
+package com.site.cart.mapper;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.site.cart.model.CartVo;
 
 @Mapper
-public interface CartDao {
+public interface CartMapper {
 
 //	장바구니 담기
 	int cartSelectOne(CartVo cartVo);

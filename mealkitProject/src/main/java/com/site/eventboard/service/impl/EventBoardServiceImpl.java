@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.site.eventboard.service.EventBoardService;
-import com.site.eventboard.dao.EventBoardDao;
+import com.site.eventboard.mapper.EventBoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import com.site.noticeboard.model.NoticeBoardVo;
 public class EventBoardServiceImpl implements EventBoardService {
 
 	@Autowired
-	private EventBoardDao event_boardMapper;
+	private EventBoardMapper event_boardMapper;
 
 	// 게시글전체리스트
 	@Override

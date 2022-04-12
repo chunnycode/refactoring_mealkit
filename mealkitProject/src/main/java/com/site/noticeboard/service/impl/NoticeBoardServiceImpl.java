@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.noticeboard.dao.NoticeBoardDao;
+import com.site.noticeboard.mapper.NoticeBoardMapper;
 import com.site.noticeboard.service.NoticeBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import com.site.noticeboard.model.NoticeBoardVo;
 public class NoticeBoardServiceImpl implements NoticeBoardService {
 
 	@Autowired
-	private NoticeBoardDao notice_boardMapper;
+	private NoticeBoardMapper notice_boardMapper;
 
 	// 게시글전체리스트
 	@Override

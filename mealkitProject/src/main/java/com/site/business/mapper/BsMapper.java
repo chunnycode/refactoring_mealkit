@@ -1,4 +1,4 @@
-package com.site.business.dao;
+package com.site.business.mapper;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.site.store.model.StoreVo;
 
 @Mapper
-public interface BsDao {
+public interface BsMapper {
 	
 	//업체 총 개수
 	int businessListCount(String category, String searchWord);

@@ -1,4 +1,4 @@
-package com.site.oneboard.dao;
+package com.site.oneboard.mapper;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.site.oneboard.model.OneBoardVo;
 
 @Mapper
-public interface OneBoardDao {
+public interface OneBoardMapper {
 
 //count
 	int selectListCount(String category, String category1, String searchword);

@@ -1,4 +1,4 @@
-package com.site.order.dao;
+package com.site.order.mapper;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import com.site.order.model.OrderVo;
 import com.site.product.model.ReviewVo;
 
 @Mapper
-public interface OrderDao {
+public interface OrderMapper {
 
 	//결제완료 배송지,상품번호
 	void orderSuccessInsert(String cart_id, String delivery_area, String recipient, String sender);

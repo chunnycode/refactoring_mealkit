@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.oneboard.dao.OneBoardDao;
+import com.site.oneboard.mapper.OneBoardMapper;
 import com.site.oneboard.service.OneBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import com.site.oneboard.model.OneBoardVo;
 public class OneBoardServiceImpl implements OneBoardService {
 
 	@Autowired
-	private OneBoardDao one_boardmapper;
+	private OneBoardMapper one_boardmapper;
 
 	// 리스트
 	@Override
