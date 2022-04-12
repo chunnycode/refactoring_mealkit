@@ -10,25 +10,27 @@ import com.site.member.model.MemberVo;
 @Mapper
 public interface AdminMapper {
 
-//	회원정보 리스트 카운트
+	//	회원정보 리스트 카운트
 	int CountMemberList(String category, String order, String searchWord);
 
-//	회원정보 리스트 출력
+	//	회원정보 리스트 출력
 	ArrayList<MemberVo> memberList(int startRow, int endRow, String category, String order, String searchWord);
 
-//	회원정보 삭제
+	//	회원정보 삭제
 	int DeleteMember(String id);
 
-//	챠트
+	//	챠트
 	ArrayList<ChartVo> orderView();
 
-//	합계 리스트
+	//	합계 리스트
 	ArrayList<ChartVo> tableList();
 
-//	합계 서머리
+	//	합계 서머리
 	ArrayList<ChartVo> tableSummary();
-	
-//	검색부분
+
+
+	// 검색부분
+
 	//당일
 	ArrayList<ChartVo> orderSelectView(String datepicker1, String datepicker2);
 	ArrayList<ChartVo> tableSelectList(String datepicker1, String datepicker2);

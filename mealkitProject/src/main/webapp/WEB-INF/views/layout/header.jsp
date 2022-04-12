@@ -92,7 +92,7 @@
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false">관리자 메뉴</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown05">
-							<li><a class="dropdown-item" href="/admin/memberList">회원관리</a></li>
+							<li><a class="dropdown-item" href="/admin/findMembers">회원관리</a></li>
 							<li><a class="dropdown-item" href="/businessManager">사업자관리</a></li>
 							<li><a class="dropdown-item" href="/admin/chart">주문/매출현황</a></li>
 						</ul>

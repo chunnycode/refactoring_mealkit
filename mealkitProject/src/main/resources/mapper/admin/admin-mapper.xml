@@ -133,7 +133,8 @@
 				  and c.id =o.cart_id
 				  and c.status='Y'
 				group by name, refund_flag
-				order by name) a,
+				order by name
+		    ) a,
 		<!-- 이부분 필요한건지?? -->
 		(select 'null' as 상품명 from dual) b
 		where a.상품명=b.상품명(+)
@@ -247,7 +248,7 @@
          order by to_char(b.dt, 'dd')
       ]]>
    </select>
-   
+
    <!-- 1개월꺼 -->
    <select id="orderSelectOmonthView" resultType="com.site.admin.model.ChartVo">
       <![CDATA[
@@ -273,7 +274,7 @@
          order by to_char(b.dt, 'W')
       ]]>
    </select>
-   	
+
 	<!-- 3개월꺼 -->
 	<select id="orderSelectTmonthView" resultType="com.site.admin.model.ChartVo">
 		<![CDATA[

@@ -62,7 +62,7 @@
 	<!-- form -->
 	<section class="section bg-white">
 		<div class="container">
-			<form action="/admin/memberList" method="post" id="regForm" onsubmit="return list();">
+			<form action="/admin/findMembers" method="post" id="regForm" onsubmit="return list();">
 				<div class="row justify-content-end">
 					<div class="mr-2">
 						<select class="p-2" name="category" id="category">
@@ -182,8 +182,8 @@
   					  		"<td>"+data.list[i].tel+"</td>"+
   					  		"<td>"+data.list[i].point+"</td>"+
   					  		"<td>"+data.list[i].rank+"</td>"+
-  					  		"<td><a href='/admin/memberUpdate?id="+data.list[i].id+"'>수정</a></td>"+
-  					  		"<td><a href='/admin/memberDelete?id="+data.list[i].id+"' onclick='return memberDelete();'>삭제</a></td></tr>";
+  					  		"<td><a href='/admin/updateMember?id="+data.list[i].id+"'>수정</a></td>"+
+  					  		"<td><a href='/admin/updateMember?id="+data.list[i].id+"' onclick='return memberDelete();'>삭제</a></td></tr>";
   				  }
  					  $("#list").html(tag);
 						var numList = "";

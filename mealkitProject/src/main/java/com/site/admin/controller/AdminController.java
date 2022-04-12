@@ -28,26 +28,26 @@ public class AdminController {
 	}
 
 	// 회원정보리스트
-	@GetMapping("/memberList")
+	@GetMapping("/findMembers")
 	public String memberList() {
-		return "/admin/member_list";
+		return "/admin/members";
 	}
 	
-	@PostMapping("/memberList")
+	@PostMapping("/findMembers")
 	@ResponseBody
 	public void memberList(AdminMemberListVo memberListVo, Model model){
 		model.addAttribute("memberListMap", adminService.memberList(memberListVo));
 	}
 
 	// 회원정보 수정
-	@GetMapping("/memberUpdate")
+	@GetMapping("/updateMember")
 	public String updateMember(@RequestParam String id, Model model) {
 		MemberVo memberVo = memberService.findMemberInfo(id);
 		model.addAttribute(memberVo);
 		return "/admin/memberUpdate";
 	}
 	
-	@PostMapping("/memberUpdate")
+	@PostMapping("/updateMember")
 	@ResponseBody
 	public int updateMember(MemberVo memberVo) {
 		return memberService.updateMemberInfo(memberVo);
@@ -64,7 +64,7 @@ public class AdminController {
 	@RequestMapping("/memberDelete")
 	public String deleteMember(@RequestParam String id) {
 		adminService.deleteMember(id);
-		return "/admin/memberList";
+		return "/admin/members";
 	}
 
 	// 차트
