@@ -57,10 +57,10 @@
 					</li> -->
 					
 					<li class="nav-item"><a class="nav-link" href="/map">지도</a></li>
-					<li class="nav-item"><a class="nav-link" href="/event_board/event_list">이벤트</a></li>
-					<li class="nav-item"><a class="nav-link" href="/notice_board/notice_list">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="/one_board/one_list">1대1문의</a></li>
-					<li class="nav-item"><a class="nav-link" href="/product/product_list">상품</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/event/list">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/notice/list">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/one/list">1대1문의</a></li>
+					<li class="nav-item"><a class="nav-link" href="/product/list">상품</a></li>
 					
 					<!-- 유저로 로그인 시 -->
 					<c:if test="${session_user == 'member' }">
@@ -92,9 +92,9 @@
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false">관리자 메뉴</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown05">
-							<li><a class="dropdown-item" href="/admin/findMembers">회원관리</a></li>
+							<li><a class="dropdown-item" href="/admin/member/list">회원관리</a></li>
 							<li><a class="dropdown-item" href="/businessManager">사업자관리</a></li>
-							<li><a class="dropdown-item" href="/admin/chart">주문/매출현황</a></li>
+							<li><a class="dropdown-item" href="/admin/orders">주문/매출현황</a></li>
 						</ul>
 					</li>
 					</c:if>

@@ -44,7 +44,7 @@
 <body onload="list();">
 
 	<!-- Header Start -->
-	<jsp:include page="../layout/header.jsp"></jsp:include>
+	<jsp:include page="refactoring_mealkit/mealkitProject/src/main/webapp/WEB-INF/views/layout/header.jsp"></jsp:include>
 	<!-- Header Close -->
 
 	<section class="page-title bg-1">
@@ -62,7 +62,7 @@
 	<!-- form -->
 	<section class="section bg-white">
 		<div class="container">
-			<form action="/admin/findMembers" method="post" id="regForm" onsubmit="return list();">
+			<form action="/admin/member/list" method="post" id="regForm" onsubmit="return list();">
 				<div class="row justify-content-end">
 					<div class="mr-2">
 						<select class="p-2" name="category" id="category">
@@ -127,7 +127,7 @@
 		</div>
 	</section>
 	<!-- footer Start -->
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	<jsp:include page="refactoring_mealkit/mealkitProject/src/main/webapp/WEB-INF/views/layout/footer.jsp"></jsp:include>
 	<!-- footer Close -->
 
 	<!-- 
@@ -182,8 +182,8 @@
   					  		"<td>"+data.list[i].tel+"</td>"+
   					  		"<td>"+data.list[i].point+"</td>"+
   					  		"<td>"+data.list[i].rank+"</td>"+
-  					  		"<td><a href='/admin/updateMember?id="+data.list[i].id+"'>수정</a></td>"+
-  					  		"<td><a href='/admin/updateMember?id="+data.list[i].id+"' onclick='return memberDelete();'>삭제</a></td></tr>";
+  					  		"<td><a href='/admin/member/modify?id="+data.list[i].id+"'>수정</a></td>"+
+  					  		"<td><a href='/admin/member/delete?id="+data.list[i].id+"' onclick='return memberDelete();'>삭제</a></td></tr>";
   				  }
  					  $("#list").html(tag);
 						var numList = "";

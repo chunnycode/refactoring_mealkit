@@ -213,7 +213,7 @@
 <body>
 
 	<!-- Header Start -->
-	<jsp:include page="../layout/header.jsp"></jsp:include>
+	<jsp:include page="refactoring_mealkit/mealkitProject/src/main/webapp/WEB-INF/views/layout/header.jsp"></jsp:include>
 	<!-- Header Close -->
 
 	<section class="page-title bg-1">
@@ -231,7 +231,7 @@
 	<!-- form -->
 	<section class="section bg-white">
 		<div class="container1">
-			<form action="/admin/memberUpdate" method="POST" id="regForm" onsubmit="return checkAll();">
+			<form action="/admin/member/modify" method="POST" id="regForm" onsubmit="return checkAll();">
 
 				<!-- 히든 인풋 -->
 				<input type="hidden" name="dob" id="dob" value="${memberVo.dob }">
@@ -396,7 +396,7 @@
 	</section>
 
 	<!-- footer Start -->
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	<jsp:include page="refactoring_mealkit/mealkitProject/src/main/webapp/WEB-INF/views/layout/footer.jsp"></jsp:include>
 	<!-- footer Close -->
 
 	<!-- 
@@ -437,7 +437,7 @@
 				return false;
 			} else {
 				$.ajax({
-					url:"/admin/memberCheckId",
+					url:"/admin/member/isDuplicatedId",
 					type:"POST",
 					data:"id="+id.value,
 					async:false,
@@ -445,7 +445,7 @@
 						if('${memberVo.id}' == id.value){
 							idChecked.innerHTML = "사용가능한 아이디입니다.";
 							checkFlag = true;
-						} else if(result == 1){
+						} else if(result){
 							idChecked.innerHTML = "존재하는 아이디입니다.";
 							checkFlag = false;
 						} else {
@@ -649,7 +649,7 @@
     				  location.href="/index";
     			  } else {
     				  alert("정보 수정에 실패하였습니다.\n다시 수정해주세요.");
-    				  location.href="/admin/member_update";
+    				  location.href="/admin/member/modify";
     			  }
     		  },
     		  error:function(){

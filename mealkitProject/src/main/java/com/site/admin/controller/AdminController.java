@@ -27,64 +27,60 @@ public class AdminController {
 		this.memberService = memberService;
 	}
 
-	// 회원정보리스트
-	@GetMapping("/findMembers")
+	// 멤버 목록 페이지
+	@GetMapping("/member/list")
 	public String memberList() {
-		return "/admin/members";
+		return "/admin/member/list";
 	}
-	
-	@PostMapping("/findMembers")
+
+	// 멤버 목록 조회
+	@PostMapping("/member/list")
 	@ResponseBody
-	public void memberList(AdminMemberListVo memberListVo, Model model){
+	public void memberList(AdminMemberListVo memberListVo, Model model) {
 		model.addAttribute("memberListMap", adminService.memberList(memberListVo));
 	}
 
-	// 회원정보 수정
-	@GetMapping("/updateMember")
+	// 멤버 수정 페이지
+	@GetMapping("/member/modify")
 	public String updateMember(@RequestParam String id, Model model) {
 		MemberVo memberVo = memberService.findMemberInfo(id);
 		model.addAttribute(memberVo);
-		return "/admin/memberUpdate";
+		return "/admin/member/modify";
 	}
-	
-	@PostMapping("/updateMember")
+
+	// 멤버 수정
+	@PostMapping("/member/modify")
 	@ResponseBody
-	public int updateMember(MemberVo memberVo) {
+	public MemberVo updateMember(MemberVo memberVo) {
 		return memberService.updateMemberInfo(memberVo);
 	}
 
-	// 회원정보 수정 아이디 체크
-	@RequestMapping("/memberCheckId")
+	// 멤버 아이디 중복검사
+	// 중복일시 true 아닐시 false 반환
+	@RequestMapping("/member/isDuplicatedId")
 	@ResponseBody
-	public int checkMemberId(@RequestParam String id) {
-		return memberService.checkRegisterId(id);
+	public boolean isDuplicatedMemberId(@RequestParam String id) {
+		return memberService.isDuplicatedId(id);
 	}
 
-	// 회원정보 삭제
-	@RequestMapping("/memberDelete")
+	// 멤버 삭제
+	@RequestMapping("/member/delete")
 	public String deleteMember(@RequestParam String id) {
 		adminService.deleteMember(id);
-		return "/admin/members";
+		return "/admin/member/list";
 	}
 
-	// 차트
-	@GetMapping("/chart")
-	public String chart(Model model) {
-		Map<String, Object> orderView = adminService.orderView();
-		model.addAttribute("orderView", orderView);
-		return "/admin/chart";
-	}
-
-	// 검색
-	@PostMapping("/Search")
-	public String Search(@RequestParam String datepicker1,
-						@RequestParam String datepicker2,
-						Model model) {
+	// 주문 조회 //검색과 따로인것을 하나로 합침
+	@GetMapping("/order/list")
+	public String orderList(@RequestParam String datepicker1, @RequestParam String datepicker2, Model model) {
 		Map<String, Object> orderView = adminService.orderSelectView(datepicker1,datepicker2);
 		model.addAttribute("orderView", orderView);
-		model.addAttribute("datepicker1",datepicker1);
-		model.addAttribute("datepicker2",datepicker2);
-		
-		return "/admin/chart";
+
+		if(datepicker1.isEmpty() && datepicker2.isEmpty()) {
+			model.addAttribute("datepicker1", datepicker1);
+			model.addAttribute("datepicker2", datepicker2);
+		}
+
+		return "/admin/order/list";
 	}
 }
