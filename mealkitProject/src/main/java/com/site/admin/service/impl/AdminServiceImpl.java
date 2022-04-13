@@ -22,20 +22,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int getMemberCount(AdminMemberRequestModel adminMemberRequestModel){
-        return adminMapper.CountMemberList(
-                adminMemberRequestModel.getCategory()
-                , adminMemberRequestModel.getOrder()
-                , adminMemberRequestModel.getSearchWord());
+        return adminMapper.CountMemberList(adminMemberRequestModel);
     }
 
     @Override
     public ArrayList<MemberVo> getMemberList(AdminMemberRequestModel adminMemberRequestModel) {
-        return adminMapper.getMemberList(
-                adminMemberRequestModel.getLimit()
-                , adminMemberRequestModel.getOffset()
-                , adminMemberRequestModel.getCategory()
-                , adminMemberRequestModel.getOrder()
-                , adminMemberRequestModel.getSearchWord());
+        return adminMapper.getMemberList(adminMemberRequestModel);
     }
 
     //	회원정보 삭제
@@ -47,20 +39,20 @@ public class AdminServiceImpl implements AdminService {
     // 주문 목록 조회
     @Override
     public ArrayList<OrderVo> getOrderList(AdminOrderRequestModel requestModel) {
-        return adminMapper.selectOrderList(requestModel.getStartDate(), requestModel.getEndDate());
+        return adminMapper.selectOrderList(requestModel);
 
     }
 
     // 통계 조회
     @Override
     public ArrayList<StatisticsVo> getOrderStatistics(AdminOrderRequestModel requestModel){
-        return adminMapper.selectOrderStatistics(requestModel.getStartDate(), requestModel.getEndDate());
+        return adminMapper.selectOrderStatistics(requestModel);
     }
 
     // 요약정보 조회
     @Override
     public ArrayList<SummaryVo> getOrderSummary(AdminOrderRequestModel requestModel){
-        return adminMapper.selectOrderSummary(requestModel.getStartDate(), requestModel.getEndDate());
+        return adminMapper.selectOrderSummary(requestModel);
     }
 
 }
