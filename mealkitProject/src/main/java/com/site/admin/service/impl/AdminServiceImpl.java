@@ -46,21 +46,21 @@ public class AdminServiceImpl implements AdminService {
 
     // 주문 목록 조회
     @Override
-    public ArrayList<OrderVo> getOrderList(String startDate, String endDate) {
-        return adminMapper.selectOrderList(startDate, endDate);
+    public ArrayList<OrderVo> getOrderList(AdminOrderRequestModel requestModel) {
+        return adminMapper.selectOrderList(requestModel.getStartDate(), requestModel.getEndDate());
 
     }
 
     // 통계 조회
     @Override
-    public ArrayList<StatisticsVo> getOrderStatistics(String startDate, String endDate){
-        return adminMapper.selectOrderStatistics(startDate, endDate);
+    public ArrayList<StatisticsVo> getOrderStatistics(AdminOrderRequestModel requestModel){
+        return adminMapper.selectOrderStatistics(requestModel.getStartDate(), requestModel.getEndDate());
     }
 
     // 요약정보 조회
     @Override
-    public ArrayList<SummaryVo> getOrderSummary(String startDate, String endDate){
-        return adminMapper.selectOrderSummary(startDate, endDate);
+    public ArrayList<SummaryVo> getOrderSummary(AdminOrderRequestModel requestModel){
+        return adminMapper.selectOrderSummary(requestModel.getStartDate(), requestModel.getEndDate());
     }
 
 }

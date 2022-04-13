@@ -29,12 +29,12 @@ public class AdminController {
 
 	// 멤버 목록 조회
 	@GetMapping("/member/list")
-	public ModelAndView getMemberList(AdminMemberRequestModel adminMemberRequestModel) {
+	public ModelAndView getMemberList(AdminMemberRequestModel requestModel) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/admin/member/list");
-		mav.addObject("memberList", adminService.getMemberList(adminMemberRequestModel));
-		mav.addObject("memberCount", adminService.getMemberCount(adminMemberRequestModel));
-		mav.addObject("adminMemberRequestModel", adminMemberRequestModel);
+		mav.addObject("memberList", adminService.getMemberList(requestModel));
+		mav.addObject("memberCount", adminService.getMemberCount(requestModel));
+		mav.addObject("adminMemberRequestModel", requestModel);
 		return mav;
 	}
 
@@ -74,9 +74,9 @@ public class AdminController {
 	public ModelAndView orderList(AdminOrderRequestModel requestModel) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/admin/order/list");
-		mav.addObject("orderList", adminService.getOrderList(requestModel.getStartDate(), requestModel.getEndDate()));
-		mav.addObject("statistics", adminService.getOrderStatistics(requestModel.getStartDate(), requestModel.getEndDate()));
-		mav.addObject("summaryList", adminService.getOrderSummary(requestModel.getStartDate(), requestModel.getEndDate()));
+		mav.addObject("orderList", adminService.getOrderList(requestModel));
+		mav.addObject("statistics", adminService.getOrderStatistics(requestModel));
+		mav.addObject("summaryList", adminService.getOrderSummary(requestModel));
 		mav.addObject("adminOrderRequestModel", requestModel);
 		return mav;
 

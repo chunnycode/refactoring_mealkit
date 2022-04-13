@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public interface AdminService {
 
-	int getMemberCount(AdminMemberRequestModel adminMemberRequestModel);
-	ArrayList<MemberVo> getMemberList(AdminMemberRequestModel adminMemberRequestModel);
+	int getMemberCount(AdminMemberRequestModel requestModel);
+	ArrayList<MemberVo> getMemberList(AdminMemberRequestModel requestModel);
 	void deleteMember(String id);
 
-	ArrayList<OrderVo> getOrderList(String startDate, String endDate);
-	ArrayList<StatisticsVo> getOrderStatistics(String startDate, String endDate);
-	ArrayList<SummaryVo> getOrderSummary(String startDate, String endDate);
+	ArrayList<OrderVo> getOrderList(AdminOrderRequestModel requestModel);
+	ArrayList<StatisticsVo> getOrderStatistics(AdminOrderRequestModel requestModel);
+	ArrayList<SummaryVo> getOrderSummary(AdminOrderRequestModel requestModel);
 
 }
