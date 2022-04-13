@@ -1,9 +1,8 @@
 package com.site.admin.controller;
 
-import java.util.Map;
-
+import com.site.admin.model.AdminOrderRequestModel;
 import com.site.admin.service.AdminService;
-import com.site.admin.model.AdminMemberListVo;
+import com.site.admin.model.AdminMemberRequestModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.site.member.service.MemberService;
 import com.site.member.model.MemberVo;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,25 +27,24 @@ public class AdminController {
 		this.memberService = memberService;
 	}
 
-	// 멤버 목록 페이지
-	@GetMapping("/member/list")
-	public String memberList() {
-		return "/admin/member/list";
-	}
-
 	// 멤버 목록 조회
-	@PostMapping("/member/list")
-	@ResponseBody
-	public void memberList(AdminMemberListVo memberListVo, Model model) {
-		model.addAttribute("memberListMap", adminService.memberList(memberListVo));
+	@GetMapping("/member/list")
+	public ModelAndView getMemberList(AdminMemberRequestModel adminMemberRequestModel) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/admin/member/list");
+		mav.addObject("memberList", adminService.getMemberList(adminMemberRequestModel));
+		mav.addObject("memberCount", adminService.getMemberCount(adminMemberRequestModel));
+		mav.addObject("adminMemberRequestModel", adminMemberRequestModel);
+		return mav;
 	}
 
 	// 멤버 수정 페이지
 	@GetMapping("/member/modify")
-	public String updateMember(@RequestParam String id, Model model) {
-		MemberVo memberVo = memberService.findMemberInfo(id);
-		model.addAttribute(memberVo);
-		return "/admin/member/modify";
+	public ModelAndView updateMember(@RequestParam String id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/admin/member/modify");
+		mav.addObject(memberService.findMemberInfo(id));
+		return mav;
 	}
 
 	// 멤버 수정
@@ -70,17 +69,16 @@ public class AdminController {
 		return "/admin/member/list";
 	}
 
-	// 주문 조회 //검색과 따로인것을 하나로 합침
+	// 주문 조회
 	@GetMapping("/order/list")
-	public String orderList(@RequestParam String datepicker1, @RequestParam String datepicker2, Model model) {
-		Map<String, Object> orderView = adminService.orderSelectView(datepicker1,datepicker2);
-		model.addAttribute("orderView", orderView);
+	public ModelAndView orderList(AdminOrderRequestModel requestModel) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/admin/order/list");
+		mav.addObject("orderList", adminService.getOrderList(requestModel.getStartDate(), requestModel.getEndDate()));
+		mav.addObject("statistics", adminService.getOrderStatistics(requestModel.getStartDate(), requestModel.getEndDate()));
+		mav.addObject("summaryList", adminService.getOrderSummary(requestModel.getStartDate(), requestModel.getEndDate()));
+		mav.addObject("adminOrderRequestModel", requestModel);
+		return mav;
 
-		if(datepicker1.isEmpty() && datepicker2.isEmpty()) {
-			model.addAttribute("datepicker1", datepicker1);
-			model.addAttribute("datepicker2", datepicker2);
-		}
-
-		return "/admin/order/list";
 	}
 }

@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class MemberListNumberingDto {
-    private AdminMemberListVo memberListVo;
+    private AdminMemberRequestModel memberListVo;
     private int listCount;
     private int limit;
     private int numLimit;
@@ -14,7 +14,7 @@ public class MemberListNumberingDto {
     private int startRow;
     private int endRow;
 
-    public MemberListNumberingDto(AdminMemberListVo memberListVo, int listCount, int limit, int numLimit) {
+    public MemberListNumberingDto(AdminMemberRequestModel memberListVo, int listCount, int limit, int numLimit) {
         this.memberListVo = memberListVo;
         this.listCount = listCount;
         this.limit = limit;

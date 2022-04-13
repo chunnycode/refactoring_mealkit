@@ -7,17 +7,17 @@ import com.site.member.model.MemberVo;
 @Mapper
 public interface MemberMapper {
 
-//	멤버 로그인
-	MemberVo selectId(String id);
-	
-//	멤버 회원가입 아이디 체크
-	int registerCheckId(String id);
-	
-//	멤버 회원가입
-	int register(MemberVo memberVo);
+    //	멤버 로그인
+    MemberVo selectId(String id);
 
-//	회원정보 수정
-	int update(MemberVo memberVo);
+    //	멤버 회원가입 아이디 체크
+    int isDuplicatedId(String id);
+
+    //	멤버 회원가입
+    MemberVo register(MemberVo memberVo);
+
+    //	회원정보 수정
+	MemberVo update(MemberVo memberVo);
 
 
 }

@@ -110,13 +110,13 @@ background-color: #3598dc;
 color: #fff;
 border-radius: 5px;
 }
-#datepicker1{
+#startDate{
 height: 37px;
 border: 1px solid #ccc;
 background-color: #fff;
 text-align: center;
 }
-#datepicker2{
+#endDate{
 height: 37px;
 border: 1px solid #ccc;
 background-color: #fff;
@@ -162,15 +162,15 @@ margin-left: 5px;
 	</div>
 	<div class="mt-4 mr-3"
 		style="font-size: 20px; margin-left: 40px; margin-bottom: -5px; color:#664E38;">
-		<b>※ 주문 및 매출현황  [ 기간: ${datepicker1} ~ ${datepicker2} ]</b><br><br>
+		<b>※ 주문 및 매출현황  [ 기간: ${startDate} ~ ${endDate} ]</b><br><br>
 		<div class="Search_Div">
 			<form action="Search" method="post" name="SearchForm" onsubmit="return sebtn()">
 				<!-- <input type="text" id="date_a" name="date_Start" class="datepicker-here" data-position="right top"/> ~ 
 				<input type="text" id="date_b" name="date_Finish" class="datepicker-here" data-position="right top"/> -->
 				<div class="double">
 					<div style="display: flex;">
-				        <input id="datepicker1" type="text" name="datepicker1" readonly>~
-				        <input id="datepicker2" type="text" name="datepicker2" readonly>
+				        <input id="startDate" type="text" name="startDate" readonly>~
+				        <input id="endDate" type="text" name="endDate" readonly>
 				        <div style="height: 100%; vertical-align: middle;">
 							<input type="radio" id="term_a" name="term" onclick="day()"><label for="term_a">당일</label>
 							<input type="radio" id="term_b" name="term" onclick="OneWeek()"><label for="term_b">1주일</label>	
@@ -200,7 +200,7 @@ margin-left: 5px;
 		<tr>
 			<th>금액</th>
 		</tr>
-		<c:forEach items="${orderView.tableSummary }" var="tableSummary">
+		<c:forEach items="${orders.tableSummary }" var="tableSummary">
 			<tr>
 				<td>${tableSummary.refund_flag}</td>
 				<td>총 ${tableSummary.totalAmount }개</td>
@@ -232,7 +232,7 @@ margin-left: 5px;
 			<th>수량</th>
 			<th>금액</th>
 		</tr>
-		<c:forEach items="${orderView.tableList }" var="tableList"
+		<c:forEach items="${orders.tableList }" var="tableList"
 			varStatus="status">
 			<tr>
 				<td>${status.count }</td>
@@ -319,11 +319,11 @@ margin-left: 5px;
 		"type": "bar",
 		"title": {
 			"text":
-			<c:if test='${datepicker1 eq datepicker2}'>"당일 매출(M=10^6)"</c:if>
-			<c:if test='${datepicker2-datepicker1 <= 7 && datepicker2-datepicker1 > 0}'>"최근 1주일 매출(M=10^6)"</c:if>
-			<c:if test='${datepicker2-datepicker1 <= 100 && datepicker2-datepicker1 > 7}'>"최근 1개월 매출(M=10^6)"</c:if>
-			<c:if test='${datepicker2-datepicker1 <= 300 && datepicker2-datepicker1 > 100}'>"최근 3개월 매출(M=10^6)"</c:if>
-			<c:if test='${datepicker2-datepicker1 <= 10000 && datepicker2-datepicker1 > 300}'>"최근 12개월 매출(M=10^6)"</c:if>
+			<c:if test='${startDate eq endDate}'>"당일 매출(M=10^6)"</c:if>
+			<c:if test='${endDate-startDate <= 7 && endDate-startDate > 0}'>"최근 1주일 매출(M=10^6)"</c:if>
+			<c:if test='${endDate-startDate <= 100 && endDate-startDate > 7}'>"최근 1개월 매출(M=10^6)"</c:if>
+			<c:if test='${endDate-startDate <= 300 && endDate-startDate > 100}'>"최근 3개월 매출(M=10^6)"</c:if>
+			<c:if test='${endDate-startDate <= 10000 && endDate-startDate > 300}'>"최근 12개월 매출(M=10^6)"</c:if>
 		},
 		"plot": {
 			"value-box": {"text": "%v"},
@@ -334,8 +334,8 @@ margin-left: 5px;
 			"values":
 			[
 			//당일 매출
-			<c:if test='${datepicker1 eq datepicker2}'>
-				<c:forEach items="${orderView.list}" var="list" varStatus="status">
+			<c:if test='${startDate eq endDate}'>
+				<c:forEach items="${orders.list}" var="list" varStatus="status">
 					<c:if test="${!status.last}">
 							"${list.month}월 ${list.day}일",
 					</c:if>
@@ -345,8 +345,8 @@ margin-left: 5px;
 				</c:forEach>
 			</c:if>
 			//1주일 매출
-			<c:if test='${datepicker2-datepicker1 <= 7 && datepicker2-datepicker1 > 0}'>
-				<c:forEach items="${orderView.list}" var="list" varStatus="status">
+			<c:if test='${endDate-startDate <= 7 && endDate-startDate > 0}'>
+				<c:forEach items="${orders.list}" var="list" varStatus="status">
 					<c:if test="${!status.last}">
 							"${list.month}월 ${list.day}일",
 					</c:if>
@@ -357,8 +357,8 @@ margin-left: 5px;
 			</c:if>
 			
 			//1개월 매출
-			<c:if test='${datepicker2-datepicker1 <= 100 && datepicker2-datepicker1 > 7}'>
-				<c:forEach items="${orderView.list}" var="list" varStatus="status">
+			<c:if test='${endDate-startDate <= 100 && endDate-startDate > 7}'>
+				<c:forEach items="${orders.list}" var="list" varStatus="status">
 					<c:if test="${!status.last}">
 							"${list.month}월 ${status.count}주 차",
 					</c:if>
@@ -369,8 +369,8 @@ margin-left: 5px;
 			</c:if>
 			
 			//3개월 매출
-			<c:if test='${datepicker2-datepicker1 <= 300 && datepicker2-datepicker1 > 100}'>
-				<c:forEach items="${orderView.list}" var="list" varStatus="status">
+			<c:if test='${endDate-startDate <= 300 && endDate-startDate > 100}'>
+				<c:forEach items="${orders.list}" var="list" varStatus="status">
 					<c:if test="${!status.last}">
 							"${list.month}월",
 					</c:if>
@@ -381,8 +381,8 @@ margin-left: 5px;
 			</c:if>
 			
 			//12개월 매출
-			<c:if test='${datepicker2-datepicker1 <= 10000 && datepicker2-datepicker1 > 300}'>
-				<c:forEach items="${orderView.list}" var="list" varStatus="status">
+			<c:if test='${endDate-startDate <= 10000 && endDate-startDate > 300}'>
+				<c:forEach items="${orders.list}" var="list" varStatus="status">
 					<c:if test="${!status.last}">
 							"${list.month}월",
 					</c:if>
@@ -427,24 +427,24 @@ margin-left: 5px;
 <script type="text/javascript">
 today=new Date();
 function day(){
-	document.getElementById("datepicker1").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
-	document.getElementById("datepicker2").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
+	document.getElementById("startDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
+	document.getElementById("endDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
 }
 function OneWeek(){
-	document.getElementById("datepicker1").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+eval(today.getDate()-7);
-	document.getElementById("datepicker2").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
+	document.getElementById("startDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+eval(today.getDate()-7);
+	document.getElementById("endDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
 }
 function OneMonth(){
-	document.getElementById("datepicker1").value=today.getFullYear()+"-0"+eval(today.getMonth())+"-"+eval(today.getDate());
-	document.getElementById("datepicker2").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
+	document.getElementById("startDate").value=today.getFullYear()+"-0"+eval(today.getMonth())+"-"+eval(today.getDate());
+	document.getElementById("endDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
 }
 function ThreeMonths(){
-	document.getElementById("datepicker1").value=today.getFullYear()+"-0"+eval(today.getMonth()-2)+"-"+eval(today.getDate());
-	document.getElementById("datepicker2").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
+	document.getElementById("startDate").value=today.getFullYear()+"-0"+eval(today.getMonth()-2)+"-"+eval(today.getDate());
+	document.getElementById("endDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
 }
 function TwelveMonths(){
-	document.getElementById("datepicker1").value=(today.getFullYear()-1)+"-0"+eval(today.getMonth()+1)+"-"+eval(today.getDate());
-	document.getElementById("datepicker2").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
+	document.getElementById("startDate").value=(today.getFullYear()-1)+"-0"+eval(today.getMonth()+1)+"-"+eval(today.getDate());
+	document.getElementById("endDate").value=today.getFullYear()+"-0"+eval(today.getMonth()+1)+"-"+today.getDate();
 }
 
 </script>
@@ -455,7 +455,7 @@ function TwelveMonths(){
      language: 'ko'
  });
  //두개짜리 제어 연결된거 만들어주는 함수
- datePickerSet($("#datepicker1"), $("#datepicker2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+ datePickerSet($("#startDate"), $("#endDate"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
  /*
      * 달력 생성기
      * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
@@ -464,7 +464,7 @@ function TwelveMonths(){
      * 
      * @param sDate, 
      * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
-     * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
+     * @example   datePickerSet($("#startDate"), $("#endDate"));
      */
  function datePickerSet(sDate, eDate, flag) {
      //시작 ~ 종료 2개 짜리 달력 datepicker	
@@ -528,20 +528,20 @@ function TwelveMonths(){
 <!-- 기간검색 onsubmit 유효성검사 -->
 <script type="text/javascript">
 function sebtn(){
-	var stDt = document.SearchForm.datepicker1.value;
-	var edDt = document.SearchForm.datepicker2.value;
-	if(!document.SearchForm.datepicker1.value || !document.SearchForm.datepicker2.value) {
+	var stDt = document.SearchForm.startDate.value;
+	var edDt = document.SearchForm.endDate.value;
+	if(!document.SearchForm.startDate.value || !document.SearchForm.endDate.value) {
 	    alert("검색할 기간을 입력해주세요.");
 	    return false;
 	}
 	else if( Number(stDt.replace(/-/gi,"")) > Number(edDt.replace(/-/gi,"")) ){
 	   alert("시작일이 종료일보다 클 수 없습니다.");
-		   document.SearchForm.datepicker1.val("");
-		   document.SearchForm.datepicker2.val("");
+		   document.SearchForm.startDate.val("");
+		   document.SearchForm.endDate.val("");
 		return false;
 	  }else{
-	    document.SearchForm.datepicker1.value = stDt.replace(/-/gi,"");
-	    document.SearchForm.datepicker2.value = edDt.replace(/-/gi,"");
+	    document.SearchForm.startDate.value = stDt.replace(/-/gi,"");
+	    document.SearchForm.endDate.value = edDt.replace(/-/gi,"");
 		return true;
 	  }
 	

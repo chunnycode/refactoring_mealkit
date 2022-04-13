@@ -1,18 +1,17 @@
 package com.site.admin.service;
 
-import com.site.admin.model.AdminMemberListVo;
+import com.site.admin.model.*;
 
-import java.util.Map;
+import java.util.ArrayList;
 
 public interface AdminService {
 
-	Map<String, Object> memberList(AdminMemberListVo memberListVo);
+	int getMemberCount(AdminMemberRequestModel adminMemberRequestModel);
+	ArrayList<MemberVo> getMemberList(AdminMemberRequestModel adminMemberRequestModel);
+	void deleteMember(String id);
 
-	int deleteMember(String id);
-	
-	Map<String, Object> orderView();
-	
-	//검색부분
-	Map<String, Object> orderSelectView(String datepicker1, String datepicker2);
-	
+	ArrayList<OrderVo> getOrderList(String startDate, String endDate);
+	ArrayList<StatisticsVo> getOrderStatistics(String startDate, String endDate);
+	ArrayList<SummaryVo> getOrderSummary(String startDate, String endDate);
+
 }

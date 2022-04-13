@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.site.oneboard.service.OneBoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -24,12 +23,15 @@ import com.site.oneboard.model.OneBoardVo;
 @Controller
 public class OneBoardController {
 
-	@Autowired
-	private OneBoardService one_boardservice;
+	private final OneBoardService one_boardservice;
 	
 	// 파일저장위치
 	@Value("${fileUrlBoard}")
 	private String fileUrl;
+
+	public OneBoardController(OneBoardService one_boardservice) {
+		this.one_boardservice = one_boardservice;
+	}
 
 	// 리스트
 	@RequestMapping("/one_board/one_list")

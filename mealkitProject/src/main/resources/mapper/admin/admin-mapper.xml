@@ -28,7 +28,7 @@
 	</select>
 
 	<!-- 회원정보 리스트 출력 -->
-	<select id="memberList" resultType="com.site.member.model.MemberVo">
+	<select id="getMemberList" resultType="com.site.admin.model.MemberVo">
 		select *
 		from (select rownum rnum, m.*
 				from (select *
@@ -98,7 +98,7 @@
 	</select>
 
 	<!-- List -->
-	<select id="tableList" resultType="com.site.admin.model.ChartVo">
+	<select id="selectOrderStatistics" resultType="com.site.admin.model.ChartVo">
 		select
 		       name
 		     , totalPrice
@@ -119,7 +119,7 @@
 	</select>
 
 	<!-- summary -->
-	<select id="tableSummary" resultType="com.site.admin.model.ChartVo">
+	<select id="selectOrderSummary" resultType="com.site.admin.model.ChartVo">
 		select
 		       sum(합계금액) totalPrice
 		     , sum(수량) totalAmount
@@ -307,8 +307,7 @@
 		<![CDATA[
 			select
 			  	to_char(sysdate, 'yyyy') year
-				, to_char(b.dt, 'mm')
-				, month
+				, to_char(b.dt, 'mm') month
 				, nvl(sum(amount*price), 0) totalPrice
 				, nvl(count(o.order_date), 0) totalAmount
 			from ( select
@@ -326,6 +325,36 @@
 			where b.dt = o.order_date(+)
 			group by to_char(b.dt, 'mm')
 			order by to_char(b.dt, 'mm')
+		]]>
+	</select>
+
+	<select id="selectOrderList" resultType="com.site.admin.model.OrderVo">
+		<![CDATA[
+		select
+			to_char(sysdate, 'yyyy') year
+			 , to_char(b.dt, 'mm') month
+			 , nvl(sum(amount*price), 0) totalPrice
+			 , nvl(count(o.order_date), 0) totalAmount
+		from ( select
+				   to_date(o.order_date, 'yyyy/mm/dd') order_date
+					, o.refund_flag refund_flag
+					, c.amount amount
+					, p.price price
+			   from ordered o, cart c, product p
+			   where o.cart_id = c.id
+				 and c.product_id=p.id
+				 and c.status='Y'
+				 and refund_flag='N'
+				 and to_char(order_date, 'yyyy-mm')
+				     between to_char(add_months(sysdate,-11), 'yyyy-mm')
+				     and to_char(sysdate, 'yyyy-mm')) o,
+			 (select to_date(sysdate, 'yyyy/mm/dd') - level + 1 as dt
+			 from dual
+			 connect by level <= (to_date(sysdate, 'yyyy/mm/dd') - to_date(add_months(sysdate,-11), 'yyyy/mm/dd'))
+			) b
+		where b.dt = o.order_date(+)
+		group by to_char(b.dt, 'mm')
+		order by to_char(b.dt, 'mm')
 		]]>
 	</select>
 

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.site.noticeboard.mapper.NoticeBoardMapper;
 import com.site.noticeboard.service.NoticeBoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.site.noticeboard.model.NoticeBoardVo;
@@ -14,8 +13,11 @@ import com.site.noticeboard.model.NoticeBoardVo;
 @Service
 public class NoticeBoardServiceImpl implements NoticeBoardService {
 
-	@Autowired
-	private NoticeBoardMapper notice_boardMapper;
+	private final NoticeBoardMapper notice_boardMapper;
+
+	public NoticeBoardServiceImpl(NoticeBoardMapper notice_boardMapper) {
+		this.notice_boardMapper = notice_boardMapper;
+	}
 
 	// 게시글전체리스트
 	@Override
@@ -23,7 +25,7 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		// db에서 전체게시글 가져옴.
 		Map<String, Object> map = new HashMap<String, Object>();
 		int listCount = notice_boardMapper.selectListCount(category,category1,searchWord); // 전체게시글 수
-		System.out.println("listCount : " + listCount);
+
 		int limit = 10; // 한페이지에 게시글 수
 		int numlimit = 10; // 하단 넘버링 수
 		int maxpage = (int) ((double) listCount / limit + 0.99); // 최대페이지 수

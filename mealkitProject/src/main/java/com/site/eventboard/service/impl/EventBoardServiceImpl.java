@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.site.eventboard.service.EventBoardService;
 import com.site.eventboard.mapper.EventBoardMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.site.noticeboard.model.NoticeBoardVo;
@@ -14,8 +13,11 @@ import com.site.noticeboard.model.NoticeBoardVo;
 @Service
 public class EventBoardServiceImpl implements EventBoardService {
 
-	@Autowired
-	private EventBoardMapper event_boardMapper;
+	private final EventBoardMapper event_boardMapper;
+
+	public EventBoardServiceImpl(EventBoardMapper event_boardMapper) {
+		this.event_boardMapper = event_boardMapper;
+	}
 
 	// 게시글전체리스트
 	@Override

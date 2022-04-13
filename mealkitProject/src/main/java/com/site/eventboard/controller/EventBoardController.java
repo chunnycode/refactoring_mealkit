@@ -21,15 +21,18 @@ import com.site.noticeboard.model.NoticeBoardVo;
 @Controller
 public class EventBoardController {
 
-	@Autowired
-	private EventBoardService event_boardService;
+	private final EventBoardService event_boardService;
 	
 	// 파일저장위치
 	@Value("${fileUrlBoard}")
 	private String fileUrl;
 
+	public EventBoardController(EventBoardService event_boardService) {
+		this.event_boardService = event_boardService;
+	}
+
 	// 게시판 글쓰기
-	@GetMapping("/event_board/event_write")
+	@GetMapping("/board/event/write")
 	public String boardWrite() {
 		return "/event_board/event_write";
 	}

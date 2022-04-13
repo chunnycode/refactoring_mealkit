@@ -1,11 +1,18 @@
 package com.site.admin.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class AdminMemberListVo {
+@Setter
+public class AdminMemberRequestModel {
     private int page;
     private String category;
     private String order;
     private String searchWord;
+
+    private int limit = 20;
+    private int offset;
+    private int numLimit = 5;
+
 }

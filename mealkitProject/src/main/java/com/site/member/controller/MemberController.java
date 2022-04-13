@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.site.member.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,16 +23,17 @@ import com.site.oneboard.model.OneBoardVo;
 @RequestMapping("/member")
 public class MemberController {
 
-	@Autowired
-	private MemberService memberService;
-	
-	@Autowired
-	private OneBoardService one_boardService;
-	
-	@Autowired
-	private OrderService orderService;
+	private final MemberService memberService;
+	private final OneBoardService one_boardService;
+	private final OrderService orderService;
 
-//	멤버 로그인
+	public MemberController(MemberService memberService, OneBoardService one_boardService, OrderService orderService) {
+		this.memberService = memberService;
+		this.one_boardService = one_boardService;
+		this.orderService = orderService;
+	}
+
+	//	멤버 로그인
 	@PostMapping("/login")
 	@ResponseBody
 	public int login(@RequestParam String id, @RequestParam String pw, HttpSession session) {
@@ -53,17 +53,15 @@ public class MemberController {
 //	멤버 회원가입 아이디 체크
 	@PostMapping("/registerCheckId")
 	@ResponseBody
-	public int registerCheckId(@RequestParam String id) {
-		int result = memberService.checkRegisterId(id);
-		return result;
+	public boolean registerCheckId(@RequestParam String id) {
+		return memberService.isDuplicatedId(id);
 	}
 	
 //	멤버 회원가입
 	@PostMapping("/register")
 	@ResponseBody
-	public int register(MemberVo memberVo) {
-		int result = memberService.register(memberVo);
-		return result;
+	public MemberVo register(MemberVo memberVo) {
+		return memberService.register(memberVo);
 	}
 
 //○○○○○○○○○○○○○○○○○○○○○○○○○○○시원○○○○○○○○○○○○○○○○○○○○○○○○○○○
@@ -103,9 +101,8 @@ public class MemberController {
 //	회원정보 수정
 	@PostMapping("/update")
 	@ResponseBody
-	public int update(MemberVo memberVo) {
-		int result = memberService.updateMemberInfo(memberVo);
-		return result;
+	public MemberVo update(MemberVo memberVo) {
+		return memberService.updateMemberInfo(memberVo);
 	}
 //★★★★★★★★★★★★★★★★★★★★★끝★★★★★★★★★★★★★★★★★★★★★★
 

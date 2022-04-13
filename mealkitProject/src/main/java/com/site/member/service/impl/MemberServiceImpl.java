@@ -27,16 +27,16 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return memberVo;
 	}
-	
+
 //	멤버 회원가입 아이디 체크
 	@Override
-	public int checkRegisterId(String id) {
-		return memberMapper.registerCheckId(id);
+	public boolean isDuplicatedId(String id) {
+		return memberMapper.isDuplicatedId(id) > 0;
 	}
 
 //	멤버 회원가입
 	@Override
-	public int register(MemberVo memberVo) {
+	public MemberVo register(MemberVo memberVo) {
 		memberVo.setPw(passwordEncoder.encode(memberVo.getPw())); // bcryt로 pw를 인코딩해서 db에 저장
 		return memberMapper.register(memberVo);
 	}
@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 
 //	회원정보 수정
 	@Override
-	public int updateMemberInfo(MemberVo memberVo) {
+	public MemberVo updateMemberInfo(MemberVo memberVo) {
 		memberVo.setPw(passwordEncoder.encode(memberVo.getPw())); // bcryt로 pw 인코딩
 		return memberMapper.update(memberVo);
 	}
