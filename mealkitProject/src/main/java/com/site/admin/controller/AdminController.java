@@ -53,16 +53,24 @@ public class AdminController {
 	// 멤버 수정
 	@PostMapping("/member/modify")
 	@ResponseBody
-	public MemberVo updateMember(MemberVo memberVo) {
-		return memberService.updateMemberInfo(memberVo);
+	public Object updateMember(MemberVo memberVo) {
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("status", "200");
+		resultMap.put("msg", null);
+		resultMap.put("result", memberService.updateMemberInfo(memberVo));
+		return resultMap;
 	}
 
 	// 멤버 아이디 중복검사
 	// 중복일시 true 아닐시 false 반환
 	@RequestMapping("/member/isDuplicatedId")
 	@ResponseBody
-	public boolean isDuplicatedMemberId(@RequestParam String id) {
-		return memberService.isDuplicatedId(id);
+	public Object isDuplicatedMemberId(@RequestParam String id) {
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("status", "200");
+		resultMap.put("msg", null);
+		resultMap.put("result", memberService.isDuplicatedId(id));
+		return resultMap;
 	}
 
 	// 멤버 삭제
@@ -78,15 +86,17 @@ public class AdminController {
 			if(result) {
 				resultMap.put("status", "200");
 				resultMap.put("msg", "삭제되었습니다.");
+				resultMap.put("result", null);
 			} else {
 				resultMap.put("status", "500");
 				resultMap.put("msg", "정상적으로 삭제되지 않았습니다.");
+				resultMap.put("result", null);
 			}
 		} else {
 			resultMap.put("status", "400");
 			resultMap.put("msg", "존재하지 않는 데이터입니다.");
+			resultMap.put("result", null);
 		}
-
 		return resultMap;
 	}
 
