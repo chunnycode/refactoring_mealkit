@@ -4,7 +4,7 @@ import com.site.admin.model.AdminOrderRequestModel;
 import com.site.admin.service.AdminService;
 import com.site.admin.model.AdminMemberRequestModel;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.site.member.service.MemberService;
 import com.site.member.model.MemberVo;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -64,9 +67,27 @@ public class AdminController {
 
 	// 멤버 삭제
 	@RequestMapping("/member/delete")
-	public String deleteMember(@RequestParam String id) {
-		adminService.deleteMember(id);
-		return "/admin/member/list";
+	public Object deleteMember(@RequestParam String id) {
+		Map<String, Object> resultMap = new HashMap<>();
+		AdminMemberRequestModel requestModel = new AdminMemberRequestModel();
+		requestModel.setId(id);
+		MemberVo member = memberService.findMemberInfo(requestModel.getId()); // TODO edit parameter
+
+		if(member != null){
+			boolean result = adminService.deleteMember(requestModel);
+			if(result) {
+				resultMap.put("status", "200");
+				resultMap.put("msg", "삭제되었습니다.");
+			} else {
+				resultMap.put("status", "500");
+				resultMap.put("msg", "정상적으로 삭제되지 않았습니다.");
+			}
+		} else {
+			resultMap.put("status", "400");
+			resultMap.put("msg", "존재하지 않는 데이터입니다.");
+		}
+
+		return resultMap;
 	}
 
 	// 주문 조회
@@ -76,8 +97,8 @@ public class AdminController {
 		mav.setViewName("/admin/order/list");
 		mav.addObject("orderList", adminService.getOrderList(requestModel));
 		mav.addObject("statistics", adminService.getOrderStatistics(requestModel));
-		mav.addObject("summaryList", adminService.getOrderSummary(requestModel));
-		mav.addObject("adminOrderRequestModel", requestModel);
+		mav.addObject("orderSummary", adminService.getOrderSummary(requestModel));
+		mav.addObject("requestModel", requestModel);
 		return mav;
 
 	}

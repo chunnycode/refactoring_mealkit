@@ -10,12 +10,12 @@ public interface AdminMapper {
 
 
 	int CountMemberList(AdminMemberRequestModel requestModel);
-	ArrayList<MemberVo> getMemberList(AdminMemberRequestModel requestModel);
+	ArrayList<MemberEntity> getMemberList(AdminMemberRequestModel requestModel);
 	void DeleteMember(String id);
 
-	ArrayList<OrderVo> selectOrderList(AdminOrderRequestModel requestModel);
-	ArrayList<StatisticsVo> selectOrderStatistics(AdminOrderRequestModel requestModel);
-	ArrayList<SummaryVo> selectOrderSummary(AdminOrderRequestModel requestModel);
+	ArrayList<OrderEntity> selectOrderList(AdminOrderRequestModel requestModel);
+	ArrayList<StatisticsEntity> selectOrderStatistics(AdminOrderRequestModel requestModel);
+	ArrayList<SummaryEntity> selectOrderSummary(AdminOrderRequestModel requestModel);
 
 
 }

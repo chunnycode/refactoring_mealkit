@@ -8,7 +8,7 @@ import com.site.eventboard.service.EventBoardService;
 import com.site.eventboard.mapper.EventBoardMapper;
 import org.springframework.stereotype.Service;
 
-import com.site.noticeboard.model.NoticeBoardVo;
+import com.site.board.model.BoardVo;
 
 @Service
 public class EventBoardServiceImpl implements EventBoardService {
@@ -38,7 +38,7 @@ public class EventBoardServiceImpl implements EventBoardService {
 		int endrow = startrow + limit - 1; // 페이지에서 게시글 마지막번째 가져오는 수
 
 		// Mapper로 전달해서 데이터 가져옴.
-		ArrayList<NoticeBoardVo> list = event_boardMapper.selectBoardList(startrow, endrow, category,category1, searchWord);
+		ArrayList<BoardVo> list = event_boardMapper.selectBoardList(startrow, endrow, category,category1, searchWord);
 
 		// map에 담음.
 		map.put("listCount", listCount);
@@ -85,22 +85,22 @@ public class EventBoardServiceImpl implements EventBoardService {
 	 */
 
 	@Override // 뷰
-	public NoticeBoardVo selectBoardView(int id) {
+	public BoardVo selectBoardView(int id) {
 
 		event_boardMapper.updateBhitAdd(id);
-		NoticeBoardVo notice_boardVo = event_boardMapper.selectBoardView(id);
+		BoardVo notice_boardVo = event_boardMapper.selectBoardView(id);
 		return notice_boardVo;
 	}
 
 	@Override // 이전글
-	public NoticeBoardVo selectBoardViewPre(int id) {
-		NoticeBoardVo event_boardVoPre = event_boardMapper.selectBoardViewPre(id);
+	public BoardVo selectBoardViewPre(int id) {
+		BoardVo event_boardVoPre = event_boardMapper.selectBoardViewPre(id);
 		return event_boardVoPre;
 	}
 
 	@Override // 다음글
-	public NoticeBoardVo selectBoardViewNext(int id) {
-		NoticeBoardVo event_boardVoNext = event_boardMapper.selectBoardViewNext(id);
+	public BoardVo selectBoardViewNext(int id) {
+		BoardVo event_boardVoNext = event_boardMapper.selectBoardViewNext(id);
 		return event_boardVoNext;
 	}
 
@@ -111,13 +111,13 @@ public class EventBoardServiceImpl implements EventBoardService {
 	}
 
 	@Override // 글쓰기
-	public void insertBoardWrite(NoticeBoardVo notice_boardVo) {
+	public void insertBoardWrite(BoardVo notice_boardVo) {
 		event_boardMapper.insertBoardWrite(notice_boardVo);
 
 	}
 
 	@Override // 수정
-	public int updateBoardModify(NoticeBoardVo notice_boardVo) {
+	public int updateBoardModify(BoardVo notice_boardVo) {
 		// 수정게시글을 db에 저장
 		int result = event_boardMapper.updateBoardModify(notice_boardVo);
 		return result;
@@ -142,7 +142,7 @@ public class EventBoardServiceImpl implements EventBoardService {
 		int endrow = startrow + limit - 1; // 페이지에서 게시글 마지막번째 가져오는 수
 
 		// Mapper로 전달해서 데이터 가져옴.
-		ArrayList<NoticeBoardVo> list2 = event_boardMapper.selectBoardList2(startrow, endrow, category,category1, searchWord);
+		ArrayList<BoardVo> list2 = event_boardMapper.selectBoardList2(startrow, endrow, category,category1, searchWord);
 
 		// map에 담음.
 		map.put("listCount2", listCount2);

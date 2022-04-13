@@ -3,7 +3,7 @@ package com.site.admin.model;
 import lombok.Getter;
 
 @Getter
-public class MemberVo {
+public class MemberEntity {
     private int id;
     private String memberId;
     private String memberName;

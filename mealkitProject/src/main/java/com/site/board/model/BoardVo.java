@@ -1,4 +1,4 @@
-package com.site.noticeboard.model;
+package com.site.board.model;
 
 
 import java.sql.Timestamp;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoticeBoardVo {
+public class BoardVo {
 	private int id;
 	private String ntitle;
 	private String ncontent;

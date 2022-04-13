@@ -1,9 +1,9 @@
-package com.site.noticeboard.controller;
+package com.site.board.controller;
 
 import java.io.File;
 import java.util.Map;
 
-import com.site.noticeboard.service.NoticeBoardService;
+import com.site.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.site.noticeboard.model.NoticeBoardVo;
+import com.site.board.model.BoardVo;
 
 @Controller
-@RequestMapping("/notice")
-public class NoticeBoardController {
+@RequestMapping("/board")
+public class BoardController {
 
-	private final NoticeBoardService notice_boardService;
+	private final BoardService notice_boardService;
 	
 	// 파일저장위치
 	@Value("${fileUrlBoard}")
 	private String fileUrl;
 
-	public NoticeBoardController(NoticeBoardService notice_boardService) {
+	public BoardController(BoardService notice_boardService) {
 		this.notice_boardService = notice_boardService;
 	}
 
@@ -38,7 +38,7 @@ public class NoticeBoardController {
 	}
 
 	@PostMapping("/write")
-	public String boardWrite(NoticeBoardVo notice_boardVo, @RequestPart MultipartFile file) throws Exception {
+	public String boardWrite(BoardVo notice_boardVo, @RequestPart MultipartFile file) throws Exception {
 
 		// 파일이 첨부가 되어 있으면
 		if (file.getSize() != 0) {
@@ -95,12 +95,12 @@ public class NoticeBoardController {
 	public String boardView(@RequestParam int id, @RequestParam(value = "page", defaultValue = "1") int page,
 			Model model) {
 		// db에서 게시글 1개 가져옴.
-		NoticeBoardVo notice_boardVo = notice_boardService.selectBoardView(id);
+		BoardVo notice_boardVo = notice_boardService.selectBoardView(id);
 		System.out.println(id);
 		// 이전글
-		NoticeBoardVo notice_boardVoPre = notice_boardService.selectBoardViewPre(id);
+		BoardVo notice_boardVoPre = notice_boardService.selectBoardViewPre(id);
 		// 다음글
-		NoticeBoardVo notice_boardVoNext = notice_boardService.selectBoardViewNext(id);
+		BoardVo notice_boardVoNext = notice_boardService.selectBoardViewNext(id);
 		model.addAttribute("page", page);
 		model.addAttribute("notice_boardVo", notice_boardVo);
 		model.addAttribute("notice_boardVoPre", notice_boardVoPre);
@@ -113,14 +113,14 @@ public class NoticeBoardController {
 	public String boardModify(@RequestParam int id, @RequestParam(value = "page", defaultValue = "1") int page,
 			Model model) {
 		// db에서 게시글 1개 가져옴.
-		NoticeBoardVo notice_boardVo = notice_boardService.selectBoardView(id);
+		BoardVo notice_boardVo = notice_boardService.selectBoardView(id);
 		model.addAttribute("page", page);
 		model.addAttribute("notice_boardVo", notice_boardVo);
 		return "/notice/modify";
 	}
 
 	@PostMapping("/notice/modify")
-	public String boardModify(NoticeBoardVo notice_boardVo, @RequestParam(value = "page", defaultValue = "1") int page,
+	public String boardModify(BoardVo notice_boardVo, @RequestParam(value = "page", defaultValue = "1") int page,
 							  @RequestPart MultipartFile file, @RequestParam String old_nupload, Model model) throws Exception {
 
 		// 파일이 첨부가 되어 있으면

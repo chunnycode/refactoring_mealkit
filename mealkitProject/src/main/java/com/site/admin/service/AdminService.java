@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public interface AdminService {
 
 	int getMemberCount(AdminMemberRequestModel requestModel);
-	ArrayList<MemberVo> getMemberList(AdminMemberRequestModel requestModel);
-	void deleteMember(String id);
+	ArrayList<MemberEntity> getMemberList(AdminMemberRequestModel requestModel);
+	boolean deleteMember(AdminMemberRequestModel requestModel);
 
-	ArrayList<OrderVo> getOrderList(AdminOrderRequestModel requestModel);
-	ArrayList<StatisticsVo> getOrderStatistics(AdminOrderRequestModel requestModel);
-	ArrayList<SummaryVo> getOrderSummary(AdminOrderRequestModel requestModel);
+	ArrayList<OrderEntity> getOrderList(AdminOrderRequestModel requestModel);
+	ArrayList<StatisticsEntity> getOrderStatistics(AdminOrderRequestModel requestModel);
+	ArrayList<SummaryEntity> getOrderSummary(AdminOrderRequestModel requestModel);
 
 }

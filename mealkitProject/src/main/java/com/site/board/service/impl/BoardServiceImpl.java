@@ -1,21 +1,21 @@
-package com.site.noticeboard.service.impl;
+package com.site.board.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.site.noticeboard.mapper.NoticeBoardMapper;
-import com.site.noticeboard.service.NoticeBoardService;
+import com.site.board.mapper.BoardMapper;
+import com.site.board.service.BoardService;
 import org.springframework.stereotype.Service;
 
-import com.site.noticeboard.model.NoticeBoardVo;
+import com.site.board.model.BoardVo;
 
 @Service
-public class NoticeBoardServiceImpl implements NoticeBoardService {
+public class BoardServiceImpl implements BoardService {
 
-	private final NoticeBoardMapper notice_boardMapper;
+	private final BoardMapper notice_boardMapper;
 
-	public NoticeBoardServiceImpl(NoticeBoardMapper notice_boardMapper) {
+	public BoardServiceImpl(BoardMapper notice_boardMapper) {
 		this.notice_boardMapper = notice_boardMapper;
 	}
 
@@ -38,7 +38,7 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		int endrow = startrow + limit - 1; // 페이지에서 게시글 마지막번째 가져오는 수
 
 		// Mapper로 전달해서 데이터 가져옴.
-		ArrayList<NoticeBoardVo> list = notice_boardMapper.selectBoardList(startrow, endrow, category,category1, searchWord);
+		ArrayList<BoardVo> list = notice_boardMapper.selectBoardList(startrow, endrow, category,category1, searchWord);
 
 		// map에 담음.
 		map.put("listCount", listCount);
@@ -85,22 +85,22 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	 */
 
 	@Override // 뷰
-	public NoticeBoardVo selectBoardView(int id) {
+	public BoardVo selectBoardView(int id) {
 		// db에서 게시글 1개 가져옴.
 		notice_boardMapper.updateBhitAdd(id);
-		NoticeBoardVo notice_boardVo = notice_boardMapper.selectBoardView(id);
+		BoardVo notice_boardVo = notice_boardMapper.selectBoardView(id);
 		return notice_boardVo;
 	}
 
 	@Override // 이전글
-	public NoticeBoardVo selectBoardViewPre(int id) {
-		NoticeBoardVo notice_boardVoPre = notice_boardMapper.selectBoardViewPre(id);
+	public BoardVo selectBoardViewPre(int id) {
+		BoardVo notice_boardVoPre = notice_boardMapper.selectBoardViewPre(id);
 		return notice_boardVoPre;
 	}
 
 	@Override // 다음글
-	public NoticeBoardVo selectBoardViewNext(int id) {
-		NoticeBoardVo notice_boardVoNext = notice_boardMapper.selectBoardViewNext(id);
+	public BoardVo selectBoardViewNext(int id) {
+		BoardVo notice_boardVoNext = notice_boardMapper.selectBoardViewNext(id);
 		return notice_boardVoNext;
 	}
 
@@ -111,13 +111,13 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	}
 
 	@Override // 글쓰기
-	public void insertBoardWrite(NoticeBoardVo notice_boardVo) {
+	public void insertBoardWrite(BoardVo notice_boardVo) {
 		notice_boardMapper.insertBoardWrite(notice_boardVo);
 
 	}
 
 	@Override // 수정
-	public int updateBoardModify(NoticeBoardVo notice_boardVo) {
+	public int updateBoardModify(BoardVo notice_boardVo) {
 		// 수정게시글을 db에 저장
 		int result = notice_boardMapper.updateBoardModify(notice_boardVo);
 		return result;

@@ -1,11 +1,11 @@
 package com.site.admin.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class SummaryVo {
+@Data@NoArgsConstructor@AllArgsConstructor
+public class StatisticsEntity {
 
 	//Summary & List 용
 	private int refundAmount;

@@ -11,6 +11,8 @@ public class AdminMemberRequestModel {
     private String order;
     private String searchWord;
 
+    private String id;
+
     private int limit = 20;
     private int offset;
     private int numLimit = 5;

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data@NoArgsConstructor@AllArgsConstructor
-public class StatisticsVo {
+public class OrderEntity {
 
 	//Summary & List 용
 	private int refundAmount;
